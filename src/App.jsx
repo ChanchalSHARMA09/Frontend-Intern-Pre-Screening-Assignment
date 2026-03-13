@@ -1,18 +1,15 @@
 import './index.css'
+import Gallery from './components/Gallery'
 
 function App() {
-  
-
   return (
-    <div className='flex items-center justify-center h-screen bg-gray-900'>
-      <h1 className='text-4xl font-bold text-yellow-400'>
-        Tailwind works
+    <div className='min-h-screen bg-gray-100'>
+      <h1 className='text-3xl font-bold text-center py-6'>
+        Photo Gallery
       </h1>
+      <Gallery/>
     </div>   
-  )
-} 
-                
-              
-            
+  );
+}      
    
 export default App
