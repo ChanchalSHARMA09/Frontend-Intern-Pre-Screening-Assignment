@@ -1,27 +1,26 @@
-import './index.css'
-import { useState } from 'react';
-import Gallery from './components/Gallery'
+import "./index.css";
+import { useState, useReducer } from "react";
+import Gallery from "./components/Gallery";
+import { favouritesReducer } from "./reducer/favouritesReducer";
 
 function App() {
-
-  const[search,setSearch]=useState(" ");
+  const [search, setSearch] = useState(" ");
+  const [favourites, dispatch] = useReducer(favouritesReducer, []);
   return (
-    <div className='min-h-screen bg-gray-100'>
-      <h1 className='text-3xl font-bold text-center py-6'>
-        Photo Gallery
-      </h1>
-      <div className='flex justify-center mb-6'>
-        <input 
-        type="text" 
-        placeholder='Search by author...'
-        className='border p-2 rounded-lg w-80'
-        value={search}
-        onChange={(e)=>setSearch(e.target.value)}
+    <div className="min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold text-center py-6">Photo Gallery</h1>
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          placeholder="Search by author..."
+          className="border p-2 rounded-lg w-80"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <Gallery search={search}/>
-    </div>   
+      <Gallery search={search} favourites={favourites} dispatch={dispatch} />
+    </div>
   );
-}      
-   
-export default App
+}
+
+export default App;
