@@ -1,5 +1,5 @@
 import "./index.css";
-import { useState, useReducer, useEffect } from "react";
+import { useState, useReducer, useEffect , useCallback} from "react";
 import Gallery from "./components/Gallery";
 import { favouritesReducer } from "./reducer/favouritesReducer";
 
@@ -14,6 +14,10 @@ function App() {
   useEffect(()=>{
     localStorage.setItem("favourites",JSON.stringify(favourites));
   },[favourites])
+  const handleSearch=useCallback((e)=>{
+    setSearch(e.target.value);
+  },[])
+
   return (
     <div className="min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold text-center py-6">Photo Gallery</h1>
@@ -23,7 +27,7 @@ function App() {
           placeholder="Search by author..."
           className="border p-2 rounded-lg w-80"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearch}
         />
       </div>
       <Gallery search={search} favourites={favourites} dispatch={dispatch} />
